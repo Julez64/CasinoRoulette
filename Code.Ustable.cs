@@ -16,9 +16,9 @@ namespace MachineASous
             Random random = new Random();
             Random rotations = new Random();
             int num = 0;
-            int bet = 0;
-            int prize = 0;
-            int credit = 0;
+            double bet = 0;
+            double prize = 0;
+            double credit = 0;
             bool dividable = false;
 
             //Splash
@@ -46,8 +46,7 @@ namespace MachineASous
             {
                 bet = 1;
                 Console.WriteLine("Credit: {0}\nWhat is your bet? (1/2/3/5)", credit);
-                bet = int.Parse(Console.ReadLine());
-                credit = credit - bet;
+                bet = double.Parse(Console.ReadLine());
                 Console.Clear();
 
                 //Is the user is betting more than he has?
@@ -65,22 +64,22 @@ namespace MachineASous
                             num = random.Next(0, 6);
                             switch (num)
                             {
-                                case 1:
+                                case 0:
                                     pos[j] = '7';
                                     continue;
-                                case 2:
+                                case 1:
                                     pos[j] = '*';
                                     continue;
-                                case 3:
+                                case 2:
                                     pos[j] = '-';
                                     continue;
-                                case 4:
+                                case 3:
                                     pos[j] = '=';
                                     continue;
-                                case 5:
+                                case 4:
                                     pos[j] = '$';
                                     continue;
-                                case 6:
+                                case 5:
                                     pos[j] = '0';
                                     continue;
                             }
@@ -129,11 +128,9 @@ namespace MachineASous
                     {
                         Console.WriteLine("Too bad, you lost... loser");
                     }
+                    credit = credit - bet;
                     Console.Read();
                     credit = credit + prize;
-                    Console.SetCursorPosition(0, Console.CursorTop - 1);
-                    Console.Write(new string(' ', Console.WindowWidth));
-                    Console.SetCursorPosition(0, Console.CursorTop - 1);
                 }
             }
             while (credit < 2500);
